@@ -1,3 +1,42 @@
+/* ===============================
+   1. Переменные проекта
+   =============================== */
+
+:root {
+  /* Основные цвета проекта */
+  --color-bg: #ffffff;
+  --color-text: #222222;
+  --color-muted: #666666;
+  --color-primary: #0057b8;
+  --color-primary-dark: #003f86;
+  --color-border: #dddddd;
+  --color-surface: #f7f7f7;
+  --color-surface-accent: #eef5ff;
+  --color-danger: #b00020;
+  --color-success: #168a2f;
+  --color-success-bg: #eefaf0;
+  --color-white: #ffffff;
+
+  /* Отступы */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Скругления */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Размеры */
+  --container-width: 1100px;
+}
+
+/* ===============================
+   2. Базовые стили
+   =============================== */
+
 /* 
   Универсальное правило для всех элементов.
   border-box делает расчёт размеров более понятным:
@@ -5,18 +44,36 @@
 */
 * {
   box-sizing: border-box;
-}
+  }
 
-/*
-  Убираем стандартный внешний отступ браузера у body.
-  Без этого вокруг страницы может появиться белая рамка.
-*/
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.5;
-  color: #222222;
-  background-color: #ffffff;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+/* ===============================
+   3. Общие элементы интерфейса
+   =============================== */
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /*
@@ -26,7 +83,7 @@ body {
 header,
 main,
 footer {
-  padding: 20px;
+  padding: var(--space-lg);
 }
 
 /*
@@ -34,7 +91,7 @@ footer {
   Пока используется простой светло-серый фон.
 */
 header {
-  background-color: #f2f2f2;
+  background-color: var(--color-surface);
 }
 
 /*
@@ -42,7 +99,7 @@ header {
   чтобы визуально отделить его от основного содержимого.
 */
 footer {
-  background-color: #f2f2f2;
+  background-color: var(--color-surface);
 }
 
 /*
@@ -50,7 +107,7 @@ footer {
   чтобы оно не растягивалось слишком сильно на широких экранах.
 */
 .site-header {
-  max-width: 1100px;
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
@@ -60,7 +117,7 @@ footer {
 .site-logo {
   font-weight: bold;
   text-decoration: none;
-  color: #222222;
+  color: var(--color-text);
 }
 
 /*
@@ -68,7 +125,7 @@ footer {
 */
 .site-nav__list {
   padding: 0;
-  margin: 16px 0 0;
+  margin: var(--space-md) 0 0;
   list-style: none;
 }
 
@@ -76,14 +133,14 @@ footer {
   Добавляем расстояние между пунктами меню.
 */
 .site-nav__list li {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-sm);
 }
 
 /*
   Оформляем ссылки меню.
 */
 .site-nav__list a {
-  color: #0057b8;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -95,29 +152,48 @@ footer {
   text-decoration: underline;
 }
 
-/*
-  Hero-блок — первый крупный блок страницы.
-  Он визуально отделяется от остальных разделов фоном и отступами.
-*/
+.button {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   4. Компоненты страницы
+   =============================== */
+
 .hero {
-  max-width: 1100px;
-  margin: 0 auto 32px;
-  padding: 32px 20px;
-  background-color: #eef5ff;
-  border-radius: 12px;
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  padding: var(--space-xl) var(--space-lg);
+  background-color: var(--color-surface-accent);
+  border-radius: var(--radius-lg);
 }
 
-/*
-  Общий класс для разделов страницы.
-*/
 .section {
-  max-width: 1100px;
-  margin: 0 auto 32px;
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
 }
 
-/*
-  Убираем лишний верхний отступ у заголовков разделов.
-*/
 .section h2 {
   margin-top: 0;
 }
@@ -127,45 +203,100 @@ footer {
   На следующих занятиях карточки будут доработаны и выстроены в сетку.
 */
 .product-card {
-  margin-bottom: 16px;
-  padding: 16px;
-  border: 1px solid #dddddd;
-  border-radius: 8px;
-  background-color: #ffffff;
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
 }
 
-/*
-  Убираем лишний верхний отступ у заголовка карточки.
-*/
+.product-card:hover {
+  border-color: var(--color-primary);
+}
+
 .product-card h3 {
   margin-top: 0;
 }
 
-
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  line-height: 1.5;
+.aside-info {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  padding: var(--space-md);
+  border-left: 4px solid var(--color-primary);
+  background-color: var(--color-surface);
 }
 
-header,
-main,
-footer {
-  padding: 20px;
+/* ===============================
+   5. Форма и модальное окно
+   =============================== */
+
+.order-dialog {
+  width: min(100% - 32px, 560px);
+  padding: var(--space-lg);
+  border: none;
+  border-radius: var(--radius-lg);
 }
 
-header {
-  background-color: #f2f2f2;
+.order-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-footer {
-  background-color: #f2f2f2;
-}
-section {
-  margin-bottom: 24px;
+.form-field {
+  margin-bottom: var(--space-md);
 }
 
-section h2 {
-  margin-top: 0;
+.form-field label {
+  display: block;
+  margin-bottom: var(--space-xs);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+.form-field input:hover,
+.form-field select:hover,
+.form-field textarea:hover {
+  border-color: var(--color-primary);
+}
+
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible,
+.form-actions button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+.form-field input[type="checkbox"] {
+  width: auto;
+}
+
+.form-field small {
+  display: block;
+  margin-top: var(--space-xs);
+  color: var(--color-muted);
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: var(--space-lg);
+}
+
+.success-message {
+  max-width: var(--container-width);
+  margin: var(--space-lg) auto;
+  padding: var(--space-md);
+  border-left: 4px solid var(--color-success);
+  background-color: var(--color-success-bg);
 }

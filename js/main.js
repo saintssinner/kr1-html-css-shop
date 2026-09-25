@@ -66,6 +66,12 @@ orderForm.addEventListener('submit', (event) => {
   // Показываем сообщение об успешной отправке.
   successMessage.hidden = false;
 
+  formElements.forEach((element) => {
+    if (element.willValidate) {
+      element.removeAttribute('aria-invalid');
+    }
+  });
+
   // Очищаем форму.
   orderForm.reset();
 
