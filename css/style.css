@@ -269,6 +269,13 @@ footer {
   border-radius: var(--radius-lg);
 }
 
+.hero__image {
+  max-width: 100%;
+  height: auto;
+  margin: var(--space-md) 0;
+  border-radius: var(--radious-md);
+}
+
 .section {
   max-width: var(--container-width);
   margin: 0 auto var(--space-xl);
